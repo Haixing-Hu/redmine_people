@@ -1,22 +1,26 @@
+# encoding: utf-8
 # Simplified Chinese strings go here for Rails i18n
+# Author: Salivaxiu@163.com, starfish.hu@gmail.com
+# Based on file: en.yml
+
 zh:
   label_people: 人员
-  label_people_edit_person: 编辑人员信息
-  label_people_new_person: 新建人员
+  label_people_edit_person: 编辑个人信息
+  label_people_new_person: 新人员
   label_people_group_plular: 组
-  label_people_search: 根据姓名查找
-  label_people_show_on_map: 在地图上显示
+  label_people_search: 搜索名字
+  label_people_show_on_map: 地图上显示
   label_people_person: 人员
   label_people_all: 显示所有人员
-  label_people_next_birthdays: 下一个生日
-  label_people_new_people: 新建人员
+  label_people_next_birthdays: 马上过生日
+  label_people_new_people: 新人员
   label_people_male: 男
   label_people_female: 女
   label_people_settings: 人员设置
 
   button_people_edit_profile: 编辑档案
 
-  label_people_avatar: Avatar
+  label_people_avatar: 头像
   label_people_job_title: 职位
   label_people_phone: 电话
   label_people_phone_plural: 电话
@@ -64,3 +68,4 @@ zh:
 
   #0.1.7
   label_people_show_for_registered_users: 为注册用户显示人员
+

@@ -1,3 +1,22 @@
+# This file is a part of Redmine CRM (redmine_contacts) plugin,
+# customer relationship management plugin for Redmine
+#
+# Copyright (C) 2011-2015 Kirill Bezrukov
+# http://www.redminecrm.com/
+#
+# redmine_people is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# redmine_people is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with redmine_people.  If not, see <http://www.gnu.org/licenses/>.
+
 class DepartmentsController < ApplicationController
   unloadable
 
@@ -69,8 +88,8 @@ class DepartmentsController < ApplicationController
   end  
 
   def add_people
-    @people = Person.find_all_by_id(params[:person_id] || params[:person_ids])
-    @department.people << @people if request.post?
+    @people = PeopleInformation.where(:user_id => params[:person_id] || params[:person_ids])
+    @department.people_information << @people if request.post?
     respond_to do |format|
       format.html { redirect_to :controller => 'departments', :action => 'edit', :id => @department, :tab => 'people' }
       format.js
@@ -79,7 +98,7 @@ class DepartmentsController < ApplicationController
   end
 
   def remove_person
-    @department.people.delete(Person.find(params[:person_id])) if request.delete?
+    @department.people_information.delete(PeopleInformation.find(params[:person_id])) if request.delete?
     respond_to do |format|
       format.html { redirect_to :controller => 'departments', :action => 'edit', :id => @department, :tab => 'people' }
       format.js
@@ -89,7 +108,7 @@ class DepartmentsController < ApplicationController
 
 
   def autocomplete_for_person
-    @people = Person.active.where(:type => 'User').not_in_department(@department).like(params[:q]).all(:limit => 100)
+    @people = Person.active.where(:type => 'User').not_in_department(@department).like(params[:q]).limit(100)
     render :layout => false
   end  
 
